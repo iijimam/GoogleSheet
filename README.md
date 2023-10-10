@@ -237,7 +237,9 @@ Pythonシェルで以下実行します。（sys.pathに追加するディレク
 
 PythonスクリプトからEmbedded PythonでIRISのメソッドを呼び出します。
 
-呼び出しのために、sys.path専用ディレクトリの追加を行うため[config.ini](/config.ini)をIRISの実行環境に合わせて修正してください。
+PythonスクリプトからIRISのメソッドを呼び出すために、sys.pathにIRISの以下専用ディレクトリの追加を行います。
+
+専用ディレクトリは、[config.ini](/config.ini)に初期値を設定しています。IRISの実行環境に合わせて修正してください。
 
 [config.ini](/config.ini)の中身は以下の通りです
 ```
@@ -248,6 +250,7 @@ lib = C:\\InterSystems\\IRISHealth1\\lib\\python
 - mgr には、IRISのインストールディレクトリ以下\mgrディレクトリをフルパスで指定してください。
 - lib には、IRISのインストールディレクトリ以下\libディレクトリをフルパスで指定してください。
 
+設定が完了したら、Pythonシェルで以下実行すると、GoogleSheetにサンプルデータが更新されます。
 
 ```
 import sys
@@ -255,8 +258,16 @@ sys.path+=['C:\WorkSpace\GoogleSheet']
 import GSTest
 spreadsheetId="1YbPs8yJRiNCrMi7NlHDenAPqXATZYFAWM0jBMDB-8Js"
 GSTest.updateData(spreadsheetId)
+```
+更新後のイメージは以下の通りです。
+![](/assets/afterUpdate.png)
 
-#シートをクリアする場合(第2引数は「シート名!A1:C4」　のようにシート名と範囲を指定します。シート全体をクリアする場合は「シート名」を指定します)
+
+シートをクリアする場合は、clearSheet()関数を実行します。
+
+> 第2引数は「シート名!A1:C4」のようにシート名と範囲を指定します。シート全体をクリアする場合は「シート名」を指定します。
+
+```
 GSTest.clearSheet(spreadsheetId,"sales!A1:C4")
 GSTest.clearSheet(spreadsheetId,"sales2!A1:C3")
 ```
