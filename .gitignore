@@ -1,0 +1,4 @@
+client*
+.vscode/*
+dev01/*
+__pycache__/*

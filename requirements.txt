@@ -1,0 +1,5 @@
+google-api-python-client
+apiclient
+oauth2client
+httplib2
+configparser
