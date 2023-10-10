@@ -156,16 +156,17 @@ https://github.com/Intersystems-jp/JSONTemplate/tree/main/src/JSONTemplate 以�
 - [POST要求時のBODY全体：GoogleSheet.DataTemplate](/GoogleSheet/DataTemplate.cls)
 
 
-### JSONデータの作成：テストメソッド（IRISにログインした状態でのテスト）
+### JSONデータの作成：テストメソッド内で直接文言指定
 
-```
-set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON()
-//JSONデータの確認
-set f=##class(%JSON.Formatter).%New()
-do f.Format(jsonobj)
-```
+- IRISにログインしたときの実行例
+    ```
+    set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON()
+    //JSONデータの確認
+    set f=##class(%JSON.Formatter).%New()
+    do f.Format(jsonobj)
+    ```
 
-- irispythonでPythonシェルを立ち上げた場合の実行例は以下の通りです。
+- irispythonでPythonシェルを立ち上げた場合の実行例
 
     irispythonコマンドの実行
     ```
@@ -182,13 +183,16 @@ do f.Format(jsonobj)
 
 テストメソッドではサンプルデータを直接設定していますが、テーブルやグローバル変数から取得して当てはめることもできます。
 
+### JSONデータの作成：データベース（グローバル変数／テーブルデータ）から値を取得して設定
+
 以下メソッドを実行すると、グローバルとテーブルのサンプルデータを作成します。
 
-```
-do ##class(GoogleSheet.SheetTemplate).CreateDummyData()
-```
+- IRISにログインしたときの実行例
+    ```
+    do ##class(GoogleSheet.SheetTemplate).CreateDummyData()
+    ```
 
-- irispythonでPythonシェルを立ち上げた場合の実行例は以下の通りです。
+- irispythonでPythonシェルを立ち上げた場合の実行例
 
     irispythonコマンドの実行
     ```
@@ -204,14 +208,15 @@ do ##class(GoogleSheet.SheetTemplate).CreateDummyData()
 
 作成したサンプルデータからJSONを生成するサンプルコードは [CreateJSON2()](/GoogleSheet/SheetTemplate.cls#L53)をご参照ください。
 
-```
-set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON2()
-//JSONデータの確認
-set f=##class(%JSON.Formatter).%New()
-do f.Format(jsonobj)
-```
+- IRISのターミナルでの実行例
+    ```
+    set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON2()
+    //JSONデータの確認
+    set f=##class(%JSON.Formatter).%New()
+    do f.Format(jsonobj)
+    ```
 
-- irispythonでPythonシェルを立ち上げた場合の実行例は以下の通りです。
+- irispythonでPythonシェルを立ち上げた場合の実行例
 
     irispythonコマンドの実行
     ```
