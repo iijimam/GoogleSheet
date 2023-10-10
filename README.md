@@ -67,7 +67,8 @@ https://github.com/Intersystems-jp/JSONTemplate/tree/main/src/JSONTemplate 以�
 
 ### JSONの用意
 今回用意するJSONは以下のような形式のJSONです。
-参考：https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
+
+ご参考：https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values
 
 - 指定シートの情報のみを更新する場合のJSON
 ```
@@ -150,12 +151,12 @@ https://github.com/Intersystems-jp/JSONTemplate/tree/main/src/JSONTemplate 以�
 
 ### 用意したテンプレートクラス
 
-- [各シートに登録する項目：GoogleSheet.SheetTesmplate](\GoogleSheet\SheetTemplate.cls)
+- [各シートに登録する項目：GoogleSheet.SheetTesmplate](/GoogleSheet/SheetTemplate.cls)
 
-- [POST要求時のBODY全体：GoogleSheet.DataTemplate](\GoogleSheet\DataTemplate.cls)
+- [POST要求時のBODY全体：GoogleSheet.DataTemplate](/GoogleSheet/DataTemplate.cls)
 
 
-### JSONデータの作成：テストメソッド
+### JSONデータの作成：テストメソッド（IRISにログインした状態でのテスト）
 
 ```
 set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON()
@@ -163,6 +164,21 @@ set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON()
 set f=##class(%JSON.Formatter).%New()
 do f.Format(jsonobj)
 ```
+
+- irispythonでPythonシェルを立ち上げた場合の実行例は以下の通りです。
+
+    irispythonコマンドの実行
+    ```
+    cd <IRISインストールディレクトリ>/bin
+    irispython
+    ```
+    [GoogleSheet.SheetTemplateクラス](/GoogleSheet/SheetTemplate.cls)のCreateJSON()メソッドの実行は以下の通りです。
+    ```
+    import iris
+    jobj=iris.cls("GoogleSheet.SheetTemplate").CreateJSON()
+    f=iris.cls("%JSON.Formatter")._New()
+    f.Format(jobj)
+    ```
 
 テストメソッドではサンプルデータを直接設定していますが、テーブルやグローバル変数から取得して当てはめることもできます。
 
@@ -172,7 +188,21 @@ do f.Format(jsonobj)
 do ##class(GoogleSheet.SheetTemplate).CreateDummyData()
 ```
 
-作成したサンプルデータからJSONを生成するサンプルコードは [CreateJSON2()](GoogleSheet\SheetTemplate.cls#L53)をご参照ください。
+- irispythonでPythonシェルを立ち上げた場合の実行例は以下の通りです。
+
+    irispythonコマンドの実行
+    ```
+    cd <IRISインストールディレクトリ>/bin
+    irispython
+    ```
+    [GoogleSheet.SheetTemplateクラス](/GoogleSheet/SheetTemplate.cls)のCreateDummyData()メソッドの実行は以下の通りです。
+    ```
+    import iris
+    iris.cls("GoogleSheet.SheetTemplate").CreateDummyData()
+    ```
+
+
+作成したサンプルデータからJSONを生成するサンプルコードは [CreateJSON2()](/GoogleSheet/SheetTemplate.cls#L53)をご参照ください。
 
 ```
 set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON2()
@@ -180,6 +210,21 @@ set jsonobj=##class(GoogleSheet.SheetTemplate).CreateJSON2()
 set f=##class(%JSON.Formatter).%New()
 do f.Format(jsonobj)
 ```
+
+- irispythonでPythonシェルを立ち上げた場合の実行例は以下の通りです。
+
+    irispythonコマンドの実行
+    ```
+    cd <IRISインストールディレクトリ>/bin
+    irispython
+    ```
+    [GoogleSheet.SheetTemplateクラス](/GoogleSheet/SheetTemplate.cls)のCreateJSON2()メソッドの実行は以下の通りです。
+    ```
+    import iris
+    jobj=iris.cls("GoogleSheet.SheetTemplate").CreateJSON2()
+    f=iris.cls("%JSON.Formatter")._New()
+    f.Format(jobj)
+    ``````
 
 ### PythonのサンプルコードからGoogleSheetの複数シートを更新する例
 
